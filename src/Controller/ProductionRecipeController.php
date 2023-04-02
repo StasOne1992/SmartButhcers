@@ -50,10 +50,8 @@ class ProductionRecipeController extends AbstractController
         $productionRecipe->getProductionRecipeArguments()->getValues();
         $productionRecipe->getProductionRecipeStructures()->getValues();
         $productionRecipe->getProductionRecipeContents()->getValues();
-        
 
-       // $arguments=$ProductionRecipeArgumentsRepository->findBy(['RecipeID'=>$productionRecipe->getId()]);
-        dump($productionRecipe);
+
         return $this->render('production_recipe/show.html.twig', [
             'production_recipe' => $productionRecipe,
 
@@ -61,8 +59,18 @@ class ProductionRecipeController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_production_recipe_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, ProductionRecipe $productionRecipe, ProductionRecipeRepository $productionRecipeRepository): Response
+    public function edit(Request $request, ProductionRecipe $productionRecipe, ProductionRecipeRepository $productionRecipeRepository,ProductionRecipeStructureRepository $ProductionRecipeStructureRepository,ProductionRecipeContentRepository $ProductionRecipeContentRepository, ProductionRecipeArgumentsRepository $ProductionRecipeArgumentsRepository): Response
     {
+        $productionRecipe->getProductionRecipeArguments()->getValues();
+        $productionRecipe->getProductionRecipeStructures()->getValues();
+        $productionRecipe->getProductionRecipeContents()->getValues();
+        $reqattr=$request->attributes;
+        $recipeId=$reqattr->get('id');
+        $params[]=array();
+        $params['ProductionRecipeContentRepository']=$ProductionRecipeContentRepository->findAll();
+        $params['ProductionRecipeStructureRepository']=$ProductionRecipeStructureRepository->findAll();
+        $params['ProductionRecipeArgumentsRepository']=$ProductionRecipeArgumentsRepository->findAll();
+        $reqattr->add($params);
         $form = $this->createForm(ProductionRecipeType::class, $productionRecipe);
         $form->handleRequest($request);
 

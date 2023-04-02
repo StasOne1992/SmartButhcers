@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\ProductionRecipe;
+use App\Repository\ProductionRecipeContentRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,8 +15,7 @@ class ProductionRecipeType extends AbstractType
     {
 
         $builder
-            ->add('RecipeName')
-
+            ->add('RecipeName',)
             ->add('ProductionType')
         ;
     }
