@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ProductionRecipeContent{% endblock %}
+
+{% block body %}
+    <h1>Create new ProductionRecipeContent</h1>
+
+    {{ include('production_recipe_content/_form.html.twig') }}
+
+    <a href="{{ path('app_production_recipe_content_index') }}">back to list</a>
+{% endblock %}

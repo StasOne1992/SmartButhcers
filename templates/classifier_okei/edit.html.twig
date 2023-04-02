@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ClassifierOKEI{% endblock %}
+
+{% block body %}
+    <h1>Edit ClassifierOKEI</h1>
+
+    {{ include('classifier_okei/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_classifier_o_k_e_i_index') }}">back to list</a>
+
+    {{ include('classifier_okei/_delete_form.html.twig') }}
+{% endblock %}

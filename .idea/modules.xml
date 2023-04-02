@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../SmartButchers/.idea/SmartButchers.iml" filepath="$PROJECT_DIR$/../SmartButchers/.idea/SmartButchers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SmartButhcers.iml" filepath="$PROJECT_DIR$/.idea/SmartButhcers.iml" />
+    </modules>
+  </component>
+</project>

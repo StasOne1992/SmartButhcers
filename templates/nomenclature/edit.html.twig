@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Nomenclature{% endblock %}
+
+{% block body %}
+
+<div class="content">
+
+    <div class="intro-y flex items-center mt-8 border-b border-slate-200/60 dark:border-darkmode-400">
+        <a class="btn btn-primary mr-1 mb-2" href="{{ path('app_nomenclature_index') }}">
+            <i data-lucide="corner-up-left" class="w-5 h-5"></i></a>
+        <h2 class="text-lg font-medium mr-auto">
+            Номенклатура (Изменение)
+        </h2>
+    </div>
+    <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-6">
+
+    {{ include('nomenclature/_form.html.twig', {'button_label': 'Обновить'}) }}
+        </div>
+    </div>
+</div>
+    {{ include('nomenclature/_delete_form.html.twig') }}
+
+    
+    <script lang="js">
+        var elementid='nomenclature_NomenclatureGUID';
+        var password=document.getElementById(elementid);
+
+        function genPassword() {
+            password=uuidv4();
+            document.getElementById(elementid).value = password;
+        }
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{{ form_start(form) }}
+
+<div class="mt-3">
+    <label for="input-state-2" class="form-label">{{ form_label(form.NomenclatureName) }}</label>
+    {{ form_widget(form.NomenclatureName) }}
+    <div class="text-warning mt-2">{{ form_errors(form.NomenclatureName) }}</div>
+</div>
+<div class="grid grid-cols-12 gap-5">
+    <div class="mt-3 col-span-4">
+        <label for="input-state-2" class="form-label">{{ form_label(form.NomenclatureTypes) }}</label>
+        {{ form_widget(form.NomenclatureTypes) }}
+        <div class="text-warning mt-2">{{ form_errors(form.NomenclatureTypes) }}</div>
+    </div>
+    <div class="mt-3 col-span-4">
+        <label for="input-state-2" class="form-label">{{ form_label(form.Unit) }}</label>
+        {{ form_widget(form.Unit) }}
+        <div class="text-warning mt-2">{{ form_errors(form.Unit) }}</div>
+    </div>
+    <div class="mt-3 col-span-4">
+        <label for="input-state-2" class="form-label">{{ form_label(form.NomenclatureArticul) }}</label>
+        {{ form_widget(form.NomenclatureArticul) }}
+        <div class="text-warning mt-2">{{ form_errors(form.NomenclatureArticul) }}</div>
+    </div>
+
+
+</div>
+<div>
+
+    <label for="input-state-2" class="form-label">{{ form_label(form.NomenclatureGUID) }}</label>
+
+    <div class="input-group">
+        {{ form_widget(form.NomenclatureGUID) }}
+        <div>            {{ form_widget(form.GenerateGUID) }}</div>
+    </div>
+    <div class="text-warning mt-2">{{ form_errors(form.NomenclatureGUID) }}</div>
+
+
+</div>
+
+
+{{ form_widget(form) }}
+<div class="flex items-center px-5 py-3 border-t border-slate-200/60 dark:border-darkmode-400">
+    <button class="btn btn-primary w-24 mr-1 mb-2">{{ button_label|default('Создать') }}</button>
+
+    <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-nomenclature"
+       class="btn btn-danger w-32 mr-2 mb-2"><i data-lucide="trash" class="w-4 h-4 mr-2"></i> Удалить
+    </a>
+
+</div>
+{{ form_end(form) }}
+
+
+

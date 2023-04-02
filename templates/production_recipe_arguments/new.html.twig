@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ProductionRecipeArguments{% endblock %}
+
+{% block body %}
+    <h1>Create new ProductionRecipeArguments</h1>
+
+    {{ include('production_recipe_arguments/_form.html.twig') }}
+
+    <a href="{{ path('app_production_recipe_arguments_index') }}">back to list</a>
+{% endblock %}

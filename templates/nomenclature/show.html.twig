@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nomenclature{% endblock %}
+
+{% block body %}
+    <h1>Nomenclature</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ nomenclature.id }}</td>
+            </tr>
+            <tr>
+                <th>NomenclatureName</th>
+                <td>{{ nomenclature.NomenclatureName }}</td>
+            </tr>
+            <tr>
+                <th>NomenclatureArticul</th>
+                <td>{{ nomenclature.NomenclatureArticul }}</td>
+            </tr>
+            <tr>
+                <th>NomenclatureGUID</th>
+                <td>{{ nomenclature.NomenclatureGUID }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_nomenclature_index') }}">back to list</a>
+
+    <a href="{{ path('app_nomenclature_edit', {'id': nomenclature.id}) }}">edit</a>
+
+    {{ include('nomenclature/_delete_form.html.twig') }}
+{% endblock %}

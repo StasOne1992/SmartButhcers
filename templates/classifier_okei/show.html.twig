@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ClassifierOKEI{% endblock %}
+
+{% block body %}
+    <h1>ClassifierOKEI</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ classifier_o_k_e_i.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ classifier_o_k_e_i.Name }}</td>
+            </tr>
+            <tr>
+                <th>ShortName</th>
+                <td>{{ classifier_o_k_e_i.ShortName }}</td>
+            </tr>
+            <tr>
+                <th>PositionKey</th>
+                <td>{{ classifier_o_k_e_i.PositionKey }}</td>
+            </tr>
+            <tr>
+                <th>GroupID</th>
+                <td>{{ classifier_o_k_e_i.GroupID }}</td>
+            </tr>
+            <tr>
+                <th>GroupName</th>
+                <td>{{ classifier_o_k_e_i.GroupName }}</td>
+            </tr>
+            <tr>
+                <th>SectionName</th>
+                <td>{{ classifier_o_k_e_i.SectionName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_classifier_o_k_e_i_index') }}">back to list</a>
+
+    <a href="{{ path('app_classifier_o_k_e_i_edit', {'id': classifier_o_k_e_i.id}) }}">edit</a>
+
+    {{ include('classifier_okei/_delete_form.html.twig') }}
+{% endblock %}

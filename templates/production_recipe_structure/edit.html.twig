@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ProductionRecipeStructure{% endblock %}
+
+{% block body %}
+    <h1>Edit ProductionRecipeStructure</h1>
+
+    {{ include('production_recipe_structure/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_production_recipe_structure_index') }}">back to list</a>
+
+    {{ include('production_recipe_structure/_delete_form.html.twig') }}
+{% endblock %}

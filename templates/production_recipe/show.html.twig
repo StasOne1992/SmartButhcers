@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProductionRecipe{% endblock %}
+
+{% block body %}
+    <h1>ProductionRecipe</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ production_recipe.id }}</td>
+            </tr>
+            <tr>
+                <th>RecipeName</th>
+                <td>{{ production_recipe.RecipeName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <br>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>RecipeArgumentGUID</th>
+            <th>RecipeArgumentID</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for production_recipe_argument in production_recipe.productionRecipeArguments %}
+            <tr>
+                <td>{{ production_recipe_argument.id }}</td>
+                <td>{{ production_recipe_argument.Name }}</td>
+                <td>{{ production_recipe_argument.RecipeArgumentGUID }}</td>
+                <td>{{ production_recipe_argument.RecipeArgumentID }}</td>
+                <td>
+                    <a href="{{ path('app_production_recipe_arguments_show', {'id': production_recipe_argument.id}) }}">show</a>
+                    <a href="{{ path('app_production_recipe_arguments_edit', {'id': production_recipe_argument.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <br>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>StructureName</th>
+            <th>StructureOrdering</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for production_recipe_structure in production_recipe.productionRecipeStructures %}
+            <tr>
+                <td>{{ production_recipe_structure.id }}</td>
+                <td>{{ production_recipe_structure.StructureName }}</td>
+                <td>{{ production_recipe_structure.StructureOrdering }}</td>
+                <td>
+                    {% for structure in  production_recipe_structure.getProductionRecipeContents().getvalues()  %}
+                       {{  dump(structure) }}
+                        {{ structure.nomenclature }}  {{ structure.postionformula }}  {{ structure.postionargument }}
+                    {% endfor %}</td>
+                <td>
+                    <a href="{{ path('app_production_recipe_structure_show', {'id': production_recipe_structure.id}) }}">show</a>
+                    <a href="{{ path('app_production_recipe_structure_edit', {'id': production_recipe_structure.id}) }}">edit</a>
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('app_production_recipe_index') }}">back to list</a>
+
+    <a href="{{ path('app_production_recipe_edit', {'id': production_recipe.id}) }}">edit</a>
+
+    {{ include('production_recipe/_delete_form.html.twig') }}
+{% endblock %}

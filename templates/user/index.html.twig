@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Пользователи{% endblock %}
+
+{% block body %}
+
+    <div class="content">
+        <h2 class="intro-y text-lg font-medium mt-10">
+           Пользователи
+        </h2>
+        <div class="grid grid-cols-12 gap-6 mt-5">
+            <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
+                <a href="{{ path('app_user_new') }}" class="btn btn-primary shadow-md mr-2"><i data-lucide="plus-square" class="w-4 h-4 mr-2"></i>
+                    Добавить пользователя</a>
+                <div class="hidden md:block mx-auto text-slate-500"><!--Показано пользователей ... из ...--></div>
+
+            </div>
+            <!-- BEGIN: Users Layout -->
+    {% for user in users %}
+            <div class="intro-y col-span-12 md:col-span-6">
+                <div class="box">
+                    <div class="flex flex-col lg:flex-row items-center p-5">
+                        <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
+                            <img alt="Midone - HTML Admin Template" class="rounded-full"
+                                 src="{{ asset('dist/images/profile-9.jpg') }}">
+                        </div>
+                        <div class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
+                            <a href="" class="font-medium">{{ user.firstname }} {{ user.middlename }} {{ user.lastname }} (ID:{{ user.id }}) </a>
+                            <div class="text-slate-500 text-xs mt-0.5">Должность: {{ user.assignment }} </div>
+                            <div class="text-slate-500 text-xs mt-0.5">{{ user.email }}</div>
+                        </div>
+                        <div class="flex mt-4 lg:mt-0">
+                            <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary py-1 px-2 mr-2">Изменить</a>
+                            <a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-outline-secondary py-1 px-2">Профиль</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BEGIN: Users Layout -->
+    {% else %}
+        <tr>
+            <td colspan="8">В системе нет ни одого пользователя</td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}

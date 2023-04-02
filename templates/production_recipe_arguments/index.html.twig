@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProductionRecipeArguments index{% endblock %}
+
+{% block body %}
+    <h1>ProductionRecipeArguments index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>RecipeArgumentGUID</th>
+                <th>RecipeArgumentID</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for production_recipe_argument in production_recipe_arguments %}
+            <tr>
+                <td>{{ production_recipe_argument.id }}</td>
+                <td>{{ production_recipe_argument.Name }}</td>
+                <td>{{ production_recipe_argument.RecipeArgumentGUID }}</td>
+                <td>{{ production_recipe_argument.RecipeArgumentID }}</td>
+                <td>
+                    <a href="{{ path('app_production_recipe_arguments_show', {'id': production_recipe_argument.id}) }}">show</a>
+                    <a href="{{ path('app_production_recipe_arguments_edit', {'id': production_recipe_argument.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_production_recipe_arguments_new') }}">Create new</a>
+{% endblock %}

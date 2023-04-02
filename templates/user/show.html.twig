@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="intro-y flex items-center mt-8">
+            <a class="btn btn-primary mr-1 mb-2" href="{{ path('app_user_index') }}"> <i data-lucide="corner-up-left"
+                                                                                         class="w-5 h-5"></i></a>
+
+
+            <h2 class="text-lg font-medium mr-auto">
+                Профиль пользователя (ID:{{ user.id }})
+            </h2>
+        </div>
+        <!-- BEGIN: Profile Info -->
+        <div class="intro-y box px-5 pt-5 mt-5">
+            <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
+                <div class="flex flex-1 px-5 items-center justify-center lg:justify-start">
+                    <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
+                        <img alt="Midone - HTML Admin Template" class="rounded-full"
+                             src="{{ asset('dist/images/profile-9.jpg') }}">
+                        <div class="absolute mb-1 mr-1 flex items-center justify-center bottom-0 right-0 bg-primary rounded-full p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" icon-name="camera"
+                                 class="lucide lucide-camera w-4 h-4 text-white" data-lucide="camera">
+                                <path d="M14.5 4h-5L7 7H4a2 2 0 00-2 2v9a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2h-3l-2.5-3z"></path>
+                                <circle cx="12" cy="13" r="3"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-5">
+                        <div class="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg"> {{ user.firstname }} {{ user.middlename }} {{ user.lastname }}</div>
+                        <div class="text-slate-500">{{ user.assignment }}</div>
+                    </div>
+                </div>
+                <div class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
+                    <div class="font-medium text-center lg:text-left lg:mt-3">Контактная информация</div>
+                    <div class="flex flex-col justify-center items-center lg:items-start mt-4">
+                        <div class="truncate sm:whitespace-normal flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" icon-name="mail" data-lucide="mail"
+                                 class="lucide lucide-mail w-4 h-4 mr-2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg> {{ user.email }}</div>
+                    </div>
+                </div>
+                <div class="mt-6 lg:mt-0 flex-1 px-5 border-t lg:border-0 border-slate-200/60 dark:border-darkmode-400 pt-5 lg:pt-0">
+                    <div class="font-medium text-center lg:text-left lg:mt-5">Быстрые действия</div>
+                    <button class="btn btn-primary w-32 mr-2 mb-2"><i data-lucide="activity" class="w-4 h-4 mr-2"></i>
+                        Активность
+                    </button>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-secondary w-32 mr-2 mb-2"> <i
+                                data-lucide="edit" class="w-4 h-4 mr-2"></i> Изменить </a>
+                    <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-user"
+                       class="btn btn-danger w-32 mr-2 mb-2"><i data-lucide="trash" class="w-4 h-4 mr-2"></i> Удалить
+                    </a>
+                    <!--<button class="btn btn-success w-32 mr-2 mb-2"><i data-lucide="calendar" class="w-4 h-4 mr-2"></i>
+                        Calendar
+                    </button>
+                    <button class="btn btn-warning w-32 mr-2 mb-2"><i data-lucide="share-2" class="w-4 h-4 mr-2"></i>
+                        Share
+                    </button>
+                    <button class="btn btn-pending w-32 mr-2 mb-2"><i data-lucide="download" class="w-4 h-4 mr-2"></i>
+                        Pending
+                    </button>
+
+                    <button class="btn btn-dark w-32 mr-2 mb-2"><i data-lucide="image" class="w-4 h-4 mr-2"></i> Image
+                    </button>
+                    -->
+                </div>
+            </div>
+            <div class="intro-y box px-5 pt-5 mt-5">
+                <ul class="nav nav-link-tabs" role="tablist">
+                    <li id="example-5-tab" class="nav-item flex-1" role="presentation">
+                        <button class="nav-link w-full py-2 active" data-tw-toggle="pill"
+                                data-tw-target="#example-tab-5" type="button" role="tab" aria-controls="example-tab-5"
+                                aria-selected="true"> Example Tab 1
+                        </button>
+                    </li>
+                    <li id="example-6-tab" class="nav-item flex-1" role="presentation">
+                        <button class="nav-link w-full py-2" data-tw-toggle="pill" data-tw-target="#roles"
+                                type="button" role="tab" aria-controls="example-tab-6" aria-selected="false"> Права доступа
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content mt-5">
+                    <div id="example-tab-5" class="tab-pane leading-relaxed active" role="tabpanel"
+                         aria-labelledby="example-5-tab"> Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                        1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                        book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                        Aldus PageMaker including versions of Lorem Ipsum.jyhttytyutuy
+                    </div>
+                    <div id="roles" class="tab-pane leading-relaxed" role="tabpanel"
+                         aria-labelledby="roles">
+                        {{ user.roles ? user.roles|json_encode : '' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ClassifierOKEI index{% endblock %}
+
+{% block body %}
+    <h1>ClassifierOKEI index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>ShortName</th>
+                <th>PositionKey</th>
+                <th>GroupID</th>
+                <th>GroupName</th>
+                <th>SectionName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for classifier_o_k_e_i in classifier_o_k_e_is %}
+            <tr>
+                <td>{{ classifier_o_k_e_i.id }}</td>
+                <td>{{ classifier_o_k_e_i.Name }}</td>
+                <td>{{ classifier_o_k_e_i.ShortName }}</td>
+                <td>{{ classifier_o_k_e_i.PositionKey }}</td>
+                <td>{{ classifier_o_k_e_i.GroupID }}</td>
+                <td>{{ classifier_o_k_e_i.GroupName }}</td>
+                <td>{{ classifier_o_k_e_i.SectionName }}</td>
+                <td>
+                    <a href="{{ path('app_classifier_o_k_e_i_show', {'id': classifier_o_k_e_i.id}) }}">show</a>
+                    <a href="{{ path('app_classifier_o_k_e_i_edit', {'id': classifier_o_k_e_i.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_classifier_o_k_e_i_new') }}">Create new</a>
+{% endblock %}

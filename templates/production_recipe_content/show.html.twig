@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProductionRecipeContent{% endblock %}
+
+{% block body %}
+    <h1>ProductionRecipeContent</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ production_recipe_content.id }}</td>
+            </tr>
+            <tr>
+                <th>PostionArgument</th>
+                <td>{{ production_recipe_content.PostionArgument }}</td>
+            </tr>
+            <tr>
+                <th>PostionFormula</th>
+                <td>{{ production_recipe_content.PostionFormula }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_production_recipe_content_index') }}">back to list</a>
+
+    <a href="{{ path('app_production_recipe_content_edit', {'id': production_recipe_content.id}) }}">edit</a>
+
+    {{ include('production_recipe_content/_delete_form.html.twig') }}
+{% endblock %}

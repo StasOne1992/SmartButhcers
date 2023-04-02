@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New NomenclatureTypes{% endblock %}
+
+{% block body %}
+    <h1>Create new NomenclatureTypes</h1>
+
+    {{ include('nomenclature_types/_form.html.twig') }}
+
+    <a href="{{ path('app_nomenclature_types_index') }}">back to list</a>
+{% endblock %}
