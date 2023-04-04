@@ -1,6 +1,5 @@
 {{ form_start(form) }}
 <div class="intro-y grid grid-cols-12 gap-6 mt-5">
-
     <div class="col-span-12 md:col-span-6">
         <div class="input-group">
             <div id="input-group"
@@ -18,7 +17,7 @@
     <div class="col-span-12">
         <ul class="nav nav-boxed-tabs" role="tablist">
             <li id="example-3-tab" class="nav-item flex-1" role="presentation">
-                <button class="nav-link w-full py-2 active" data-tw-toggle="pill" data-tw-target="#structure-tab"
+                <button class="nav-link w-full py-2" data-tw-toggle="pill" data-tw-target="#structure-tab"
                         type="button"
                         role="tab" aria-controls="structure-tab" aria-selected="true"> Этапы производства
                 </button>
@@ -38,26 +37,39 @@
         <div class="tab-content mt-5">
             <div id="structure-tab" class="tab-pane leading-relaxed " role="tabpanel"
                  aria-labelledby="example-3-tab">
-                <table>
-                    {% for production_recipe_argument in production_recipe.productionRecipeArguments %}
+                <div class="intro-y flex flex-col sm:flex-row items-center mt-2 mb-2">
+                    <h2 class="text-lg font-medium mr-auto">
+                        Этапы производства</h2>
+                    <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+                        <a class="btn btn-primary shadow-md mr-2" href="{{ path('app_production_recipe_structure_new') }}">
+                            <i data-lucide="plus" class="block mx-auto"></i>  <span class="hidden md:block">Добавить этап</span></a>
+                    </div>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <th>ID</th>
+                    <th>Наименование этапа</th>
+                    <th>Действия</th>
+                    </thead>
+                    <tbody>
+                    {% for production_recipe_step in production_recipe.productionRecipeStructures %}
                         <tr>
-                            <td>{{ production_recipe_argument.id }}</td>
-                            <td>{{ production_recipe_argument.Name }}</td>
-                            <td>{{ production_recipe_argument.RecipeArgumentGUID }}</td>
-                            <td>{{ production_recipe_argument.RecipeArgumentID }}</td>
+                            <td>{{ production_recipe_step.id }}</td>
+                            <td>{{ production_recipe_step.StructureName }}</td>
                             <td>
-                                <a href="{{ path('app_production_recipe_arguments_show', {'id': production_recipe_argument.id}) }}">show</a>
-                                <a href="{{ path('app_production_recipe_arguments_edit', {'id': production_recipe_argument.id}) }}">edit</a>
+                                <a href="{{ path('app_production_recipe_arguments_show', {'id': production_recipe_step.id}) }}">show</a>
+                                <a href="{{ path('app_production_recipe_arguments_edit', {'id': production_recipe_step.id}) }}">edit</a>
                             </td>
                         </tr>
                     {% endfor %}
+                    </tbody>
                 </table>
             </div>
-            <div id="example-tab-4" class="tab-pane leading-relaxed active" role="tabpanel"
+            <div id="example-tab-4" class="tab-pane leading-relaxed " role="tabpanel"
                  aria-labelledby="example-4-tab">
-                <div class="intro-y box bg-primary p-5 mt-6">
+                <div class="intro-y box bg-secondary p-5 mt-6">
                     <div class="intro-y flex flex-col sm:flex-row items-center mt-2 mb-2">
-                        <h2 class="text-lg font-medium mr-auto">
+                        <h2 class="text-2xl mr-auto">
                             Параметры рецепта</h2>
                         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                             <a class="btn btn-primary shadow-md mr-2">
@@ -77,17 +89,32 @@
                         {% endfor %}
                     </table>
                 </div>
-                <div class="intro-y box bg-primary p-5 mt-6">
-                    {% for productionRecipeStructures in production_recipe.productionRecipeStructures %}
+                <div class="intro-y box bg-light p-5 mt-6">
+                    <div class="intro-y flex flex-col sm:flex-row items-center mt-2 mb-2">
+                        <h2 class="text-2xl text-center font-medium">
+                            Содержание рецепта</h2>
+                    </div>
+                </div>
 
-                        <h3 class="intro-y text-lg font-medium mr-auto mt-2 mb-4">{{ productionRecipeStructures.StructureOrdering }}
-                            . {{ productionRecipeStructures.StructureName }} </h3>
+                <div class="intro-y box bg-light p-5 mt-6">
+                    {% for productionRecipeStructures in production_recipe.productionRecipeStructures %}
+                        <div class="intro-y flex flex-col sm:flex-row items-center mt-2 mb-2">
+                            <h2 class="text-lg font-medium mr-auto">
+                                {{ productionRecipeStructures.StructureOrdering }}
+                                . {{ productionRecipeStructures.StructureName }}</h2>
+                            <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+                                <a class="btn btn-primary shadow-md mr-2" href="{{ path('app_production_recipe_content_new',{'recepie_structure_id':productionRecipeStructures.id})  }}">
+                                    <i data-lucide="plus" class="block mx-auto"></i>  <span class="hidden md:block">Добавить элемент</span></a>
+                            </div>
+                        </div>
+
                         <table class="table table-bordered table-striped">
                             <thead>
                             <th>Номенклатура</th>
                             <th>Ед. измер.</th>
                             <th>Параметр</th>
                             <th>Формула расчёта</th>
+                            <th>Действия</th>
                             </thead>
                             <tbody>
                             {% for content in productionRecipeStructures.productionRecipeContents %}
@@ -97,6 +124,10 @@
                                     <td>{{ content.Nomenclature.Unit }}</td>
                                     <td>{{ content.PostionArgument }}</td>
                                     <td>{{ content.PostionFormula }}</td>
+                                    <td>
+                                        <a href="{{ path('app_production_recipe_structure_show', {'id': content.id}) }}">show</a>
+                                        <a href="{{ path('app_production_recipe_structure_edit', {'id': content.id}) }}">edit</a>
+                                    </td>
                                 </tr>
 
                             {% endfor %}

@@ -3,7 +3,11 @@
 {% block title %}Edit ProductionRecipeContent{% endblock %}
 
 {% block body %}
-    <h1>Edit ProductionRecipeContent</h1>
+    <div class="intro-y flex items-center mt-8">
+        <h1 class="text-3xl">
+            Изменить строку рецепта
+        </h1>
+    </div>
 
     {{ include('production_recipe_content/_form.html.twig', {'button_label': 'Update'}) }}
 

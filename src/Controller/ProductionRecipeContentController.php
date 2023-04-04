@@ -6,11 +6,14 @@ namespace App\Controller;
 use App\Entity\ProductionRecipeContent;
 use App\Form\ProductionRecipeContentType;
 use App\Repository\ProductionRecipeContentRepository;
+use App\Repository\ProductionRecipeRepository;
+use App\Repository\ProductionRecipeStructureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+
 
 
 #[Route('/productionrecipe/content')]
@@ -25,9 +28,18 @@ class ProductionRecipeContentController extends AbstractController
     }
 
     #[Route('/new', name: 'app_production_recipe_content_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProductionRecipeContentRepository $productionRecipeContentRepository): Response
+    public function new(Request $request, ProductionRecipeContentRepository $productionRecipeContentRepository, ProductionRecipeStructureRepository $productionRecipeStructureRepository,ProductionRecipeRepository $ProductionRecipeRepository): Response
     {
         $productionRecipeContent = new ProductionRecipeContent();
+
+        $requestParams = $request->query->all();
+        $productionRecipeContent->opts=array();
+        if (isset($requestParams['recepie_structure_id'])) {
+            $productionRecipeContent->setProductionRecipeSection($productionRecipeStructureRepository->findOneBy(['id'=>$requestParams['recepie_structure_id']]));
+            $productionRecipeContent->opts[]=['disablerecipestructureselect'=>true];
+        }
+
+
         $form = $this->createForm(ProductionRecipeContentType::class, $productionRecipeContent);
         $form->handleRequest($request);
 

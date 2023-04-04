@@ -13,7 +13,6 @@ class ProductionRecipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder
             ->add('RecipeName',)
             ->add('ProductionType')

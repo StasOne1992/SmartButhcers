@@ -22,8 +22,10 @@ class MenuBuilder
 
         $menu = $this->factory->createItem('root');
        // $menu->addChild('Home', ['route' => 'app_production_index','icon'=>'ss']);
-        $menu->addChild('Users',['route'=>'app_user_index','label'=>'Пользователи','icon'=>'users'])
-        ;
+        $menu->addChild('Users',['route'=>'app_user_index','label'=>'Пользователи','icon'=>'users']);
+        $menu->addChild('Production',['route'=>'app_production_recipe_index','label'=>'Производство','icon'=>'users']);
+        $menu['Production']->addChild('recipe',['route'=>'app_production_recipe_index','label'=>'Рецепты','icon'=>'users']);
+
         $menu->addChild('Classifiers', ['label'=>'Справочники','icon'=>'users']);
         $menu['Classifiers']->setUri('javascript:;.html');
         $menu['Classifiers']->addChild('Справочник ОКЕИ', ['route' => 'app_classifier_o_k_e_i_index']);

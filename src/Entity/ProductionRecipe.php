@@ -75,6 +75,7 @@ class ProductionRecipe
         return $this->productionRecipeArguments;
     }
 
+
     public function addProductionRecipeArgument(ProductionRecipeArguments $productionRecipeArgument): self
     {
         if (!$this->productionRecipeArguments->contains($productionRecipeArgument)) {
@@ -126,8 +127,6 @@ class ProductionRecipe
 
         return $this;
     }
-
-
 
 
     public function __toString()

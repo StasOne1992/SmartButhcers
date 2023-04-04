@@ -3,33 +3,46 @@
 {% block title %}ProductionRecipe index{% endblock %}
 
 {% block body %}
-    <h1>ProductionRecipe index</h1>
+    <div class="intro-y flex flex-col sm:flex-row items-center mt-2 mb-2">
+        <h2 class="text-3xl mr-auto">
+            Рецепты</h2>
+        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+            <a class="btn btn-primary shadow-md mr-2" href="{{path('app_production_recipe_new') }}">
+                <i data-lucide="plus" class="block mx-auto"></i>  <span class="hidden md:block">Добавить рецепт</span></a>
+        </div>
+    </div>
 
-    <table class="table">
-        <thead>
+
+<div class="intro-y grid grid-cols-12 gap-6 mt-5">
+    <div class="col-span-12">
+        <table class="table table-bordered table-striped">
+            <thead class="text-center">
             <tr>
                 <th>Id</th>
-                <th>RecipeName</th>
-                <th>actions</th>
+                <th>Наименование рецепта</th>
+                <th>Действия</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for production_recipe in production_recipes %}
-            <tr>
-                <td>{{ production_recipe.id }}</td>
-                <td>{{ production_recipe.RecipeName }}</td>
-                <td>
-                    <a href="{{ path('app_production_recipe_show', {'id': production_recipe.id}) }}">show</a>
-                    <a href="{{ path('app_production_recipe_edit', {'id': production_recipe.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for production_recipe in production_recipes %}
+                <tr>
+                    <td>{{ production_recipe.id }}</td>
+                    <td>{{ production_recipe.RecipeName }}</td>
+                    <td>
+                        <a href="{{ path('app_production_recipe_show', {'id': production_recipe.id}) }}">show</a>
+                        <a href="{{ path('app_production_recipe_edit', {'id': production_recipe.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
     <a href="{{ path('app_production_recipe_new') }}">Create new</a>
 {% endblock %}

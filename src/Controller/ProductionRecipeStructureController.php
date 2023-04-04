@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\ProductionRecipeStructure;
 use App\Form\ProductionRecipeStructureType;
+use App\Repository\ProductionRecipeRepository;
 use App\Repository\ProductionRecipeStructureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,10 +22,13 @@ class ProductionRecipeStructureController extends AbstractController
         ]);
     }
 
+    //'recepie_id'
+    //'recepie_structure_id'
     #[Route('/new', name: 'app_production_recipe_structure_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProductionRecipeStructureRepository $productionRecipeStructureRepository): Response
+    public function new(Request $request, ProductionRecipeStructureRepository $productionRecipeStructureRepository,ProductionRecipeRepository $ProductionRecipeRepository): Response
     {
         $productionRecipeStructure = new ProductionRecipeStructure();
+
         $form = $this->createForm(ProductionRecipeStructureType::class, $productionRecipeStructure);
         $form->handleRequest($request);
 
@@ -71,7 +75,7 @@ class ProductionRecipeStructureController extends AbstractController
     #[Route('/{id}', name: 'app_production_recipe_structure_delete', methods: ['POST'])]
     public function delete(Request $request, ProductionRecipeStructure $productionRecipeStructure, ProductionRecipeStructureRepository $productionRecipeStructureRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$productionRecipeStructure->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $productionRecipeStructure->getId(), $request->request->get('_token'))) {
             $productionRecipeStructureRepository->remove($productionRecipeStructure, true);
         }
 

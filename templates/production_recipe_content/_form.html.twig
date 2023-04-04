@@ -1,4 +1,51 @@
 {{ form_start(form) }}
+<div class="intro-y grid grid-cols-12 gap-6 mt-5">
+
+    <div class="col-span-12 md:col-span-6">
+        <div class="input-group">
+            <div id="input-group"
+                 class="input-group-text">{{ form_label(form.Nomenclature,'Номенклатура') }}</div>
+            {{ form_widget(form.Nomenclature,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+        <div class="col-span-12 md:col-span-6">
+
+        <div class="input-group">
+            <div id="input-group"
+                 class="input-group-text">
+                {{ form.vars.value.ProductionRecipeSection.ProductionRecipeID.RecipeName }}
+            </div>
+            <div id="input-group"
+                 class="input-group-text">{{ form_label(form.ProductionRecipeSection,'Раздел:') }} </div>
+                {{ form_widget(form.ProductionRecipeSection,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-span-12 md:col-span-6">
+        <div class="input-group">
+            <div id="input-group"
+                 class="input-group-text">{{ form_label(form.PostionArgument,'Значение аргумента (дробь <=1)') }}</div>
+            {{ form_widget(form.PostionArgument,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-span-12 md:col-span-6">
+        <div class="input-group">
+            <div id="input-group"
+                 class="input-group-text">{{ form_label(form.PostionFormula,'Формула вычисления (PHP)') }}</div>
+            {{ form_widget(form.PostionFormula,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="col-span-12">
+        <div class="intro-y flex flex-col-reverse sm:flex-row items-center">
+            <div class="w-full sm:w-auto relative mr-auto mt-3 sm:mt-0">
+                {{ dump(form) }}
+            </div>
+            <div class="w-full sm:w-auto flex">
+                <button class="btn btn-primary shadow-md mr-2">{{ button_label|default('Save') }}</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
 {{ form_end(form) }}
